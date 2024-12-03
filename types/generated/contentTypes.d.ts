@@ -369,31 +369,39 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
-  collectionName: 'headers';
+export interface ApiCommonCommon extends Struct.SingleTypeSchema {
+  collectionName: 'commons';
   info: {
-    description: '';
-    displayName: 'Header';
-    pluralName: 'headers';
-    singularName: 'header';
+    displayName: 'Common';
+    pluralName: 'commons';
+    singularName: 'common';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    contactList: Schema.Attribute.Component<'utility.cta', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    extras: Schema.Attribute.DynamicZone<['utility.cta']>;
+    footerDescription: Schema.Attribute.Text & Schema.Attribute.Required;
+    footerHeading: Schema.Attribute.String & Schema.Attribute.Required;
+    footerLogoType: Schema.Attribute.Enumeration<['small', 'large']>;
+    footerMenu: Schema.Attribute.Relation<'oneToOne', 'api::menu.menu'>;
+    headerLogoType: Schema.Attribute.Enumeration<['small', 'large']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'small'>;
+    headerMenu: Schema.Attribute.Relation<'oneToOne', 'api::menu.menu'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::header.header'
+      'api::common.common'
     > &
       Schema.Attribute.Private;
-    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    menuName: Schema.Attribute.Enumeration<['main', 'footer']>;
+    logoLarge: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    logoSmall: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    socialLinks: Schema.Attribute.Component<'utility.cta', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -421,6 +429,34 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMenuMenu extends Struct.CollectionTypeSchema {
+  collectionName: 'menus';
+  info: {
+    displayName: 'Menu';
+    pluralName: 'menus';
+    singularName: 'menu';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    links: Schema.Attribute.Component<'utility.cta', true> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::menu.menu'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -936,8 +972,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::header.header': ApiHeaderHeader;
+      'api::common.common': ApiCommonCommon;
       'api::home.home': ApiHomeHome;
+      'api::menu.menu': ApiMenuMenu;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

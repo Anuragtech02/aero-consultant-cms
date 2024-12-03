@@ -1,0 +1,75 @@
+{
+  "kind": "singleType",
+  "collectionName": "commons",
+  "info": {
+    "singularName": "common",
+    "pluralName": "commons",
+    "displayName": "Common"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "logoSmall": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "logoLarge": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "headerLogoType": {
+      "type": "enumeration",
+      "enum": [
+        "small",
+        "large"
+      ],
+      "required": true,
+      "default": "small"
+    },
+    "headerMenu": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::menu.menu"
+    },
+    "footerLogoType": {
+      "type": "enumeration",
+      "enum": [
+        "small",
+        "large"
+      ]
+    },
+    "footerDescription": {
+      "type": "text",
+      "required": true
+    },
+    "footerHeading": {
+      "type": "string",
+      "required": true
+    },
+    "footerMenu": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::menu.menu"
+    },
+    "contactList": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.cta"
+    },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.cta"
+    }
+  }
+}
