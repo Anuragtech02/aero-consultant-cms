@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "headers",
+  "info": {
+    "singularName": "header",
+    "pluralName": "headers",
+    "displayName": "Header",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "menuName": {
+      "type": "enumeration",
+      "enum": [
+        "main",
+        "footer"
+      ]
+    },
+    "extras": {
+      "type": "dynamiczone",
+      "components": [
+        "utility.cta"
+      ]
+    }
+  }
+}
