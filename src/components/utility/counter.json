@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_utility_counters",
+  "info": {
+    "displayName": "Counter",
+    "icon": "chartBubble"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "countStart": {
+      "type": "integer",
+      "required": true
+    },
+    "countEnd": {
+      "required": true,
+      "type": "integer"
+    },
+    "symbol": {
+      "type": "string",
+      "maxLength": 3,
+      "minLength": 1,
+      "required": true
+    },
+    "symbolPosition": {
+      "type": "enumeration",
+      "enum": [
+        "left",
+        "right"
+      ],
+      "default": "right",
+      "required": true
+    }
+  }
+}

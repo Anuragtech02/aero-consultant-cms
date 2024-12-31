@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_home_slider_tabs",
+  "info": {
+    "displayName": "Slider Tab",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "tabTitle": {
+      "type": "string",
+      "required": true
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "defaultHtml"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "utility.cta"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

@@ -31,6 +31,90 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.seo"
+    },
+    "heroCTAList": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.cta"
+    },
+    "statisticsCounters": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.counter",
+      "required": true,
+      "min": 2
+    },
+    "aboutSectionHeading": {
+      "type": "string",
+      "required": true,
+      "minLength": 50
+    },
+    "aboutSectionDescription": {
+      "type": "string",
+      "unique": false,
+      "minLength": 100,
+      "required": true
+    },
+    "aboutSectionImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "serviceSectionHeading": {
+      "type": "string",
+      "required": true
+    },
+    "serviceSectionDescription": {
+      "type": "string",
+      "required": true
+    },
+    "sliderSectionTitle": {
+      "type": "string",
+      "required": true
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "utility.cta",
+      "required": true
+    },
+    "sliderTabs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.slider-tab",
+      "required": true,
+      "min": 1
+    },
+    "clientsSectionHeading": {
+      "type": "string",
+      "required": true
+    },
+    "clientsLogoList": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "newsRoomTitle": {
+      "type": "string",
+      "required": true
+    },
+    "newsRoomSubtitle": {
+      "type": "string",
+      "required": true
+    },
+    "newsRoomImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }
