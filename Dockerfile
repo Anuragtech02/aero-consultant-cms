@@ -4,20 +4,18 @@ RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev l
 ENV NODE_ENV=production
 
 WORKDIR /opt/
-# Changed paths since context is now ./backend
 COPY package.json yarn.lock ./
 RUN yarn global add node-gyp
 RUN yarn config set network-timeout 600000 -g && yarn install --production
 ENV PATH=/opt/node_modules/.bin:$PATH
 
 WORKDIR /opt/app
-# Changed path since context is now ./backend
 COPY . .
 RUN yarn build
 
 # Creating final production image
 FROM node:18-alpine
-RUN apk add --no-cache vips-dev
+RUN apk add --no-cache vips-dev aws-cli
 ENV NODE_ENV=production
 
 WORKDIR /opt/
@@ -28,8 +26,10 @@ COPY --from=build /opt/app ./
 
 ENV PATH=/opt/node_modules/.bin:$PATH
 
-RUN chown -R node:node /opt/app
-USER node
+# We don't want to run as node user because we need AWS creds access
+# RUN chown -R node:node /opt/app
+# USER node
+
 EXPOSE 1337
 
 CMD ["yarn", "start"]
