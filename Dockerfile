@@ -4,13 +4,15 @@ RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev l
 ENV NODE_ENV=production
 
 WORKDIR /opt/
-COPY ./backend/package.json ./backend/yarn.lock ./
+# Changed paths since context is now ./backend
+COPY package.json yarn.lock ./
 RUN yarn global add node-gyp
 RUN yarn config set network-timeout 600000 -g && yarn install --production
 ENV PATH=/opt/node_modules/.bin:$PATH
 
 WORKDIR /opt/app
-COPY ./backend .
+# Changed path since context is now ./backend
+COPY . .
 RUN yarn build
 
 # Creating final production image
