@@ -50,7 +50,7 @@
       "minLength": 50
     },
     "aboutSectionDescription": {
-      "type": "string",
+      "type": "text",
       "unique": false,
       "minLength": 100,
       "required": true
@@ -109,12 +109,12 @@
       "required": true
     },
     "newsRoomImage": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "common",
     "pluralName": "commons",
-    "displayName": "Common"
+    "displayName": "Common",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,20 +13,20 @@
   "pluginOptions": {},
   "attributes": {
     "logoSmall": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "logoLarge": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "headerLogoType": {
       "type": "enumeration",
@@ -35,11 +36,6 @@
       ],
       "required": true,
       "default": "small"
-    },
-    "headerMenu": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::menu.menu"
     },
     "footerLogoType": {
       "type": "enumeration",
@@ -56,11 +52,6 @@
       "type": "string",
       "required": true
     },
-    "footerMenu": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::menu.menu"
-    },
     "contactList": {
       "type": "component",
       "repeatable": true,
@@ -70,6 +61,16 @@
       "type": "component",
       "repeatable": true,
       "component": "utility.cta"
+    },
+    "headerMenu": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::tree-menus.menu"
+    },
+    "footerMenu": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::tree-menus.menu"
     }
   }
 }
