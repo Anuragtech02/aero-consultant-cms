@@ -19,42 +19,46 @@ export default async ({ env }) => {
     rejectUnauthorized: env.bool("DATABASE_SSL_REJECT_UNAUTHORIZED", true),
   };
 
-  // Only fetch Secrets in production
-  //   if (env("NODE_ENV") === "production") {
-  //     try {
-  //       const secretsClient = new SecretsManagerClient({
-  //         region: env("AWS_REGION", "us-west-2"),
-  //       });
-  //       const command = new GetSecretValueCommand({
-  //         SecretId: "hmweb-dev-rds",
-  //         VersionStage: "AWSCURRENT",
-  //       });
-  //       const response = await secretsClient.send(command);
+  //   Only fetch Secrets in production
+  if (env("NODE_ENV") === "production") {
+    console.log("Came inside production");
+    try {
+      const secretsClient = new SecretsManagerClient({
+        region: env("AWS_REGION", "us-west-2"),
+      });
+      const command = new GetSecretValueCommand({
+        SecretId: "hmweb-dev-rds",
+        VersionStage: "AWSCURRENT",
+      });
+      const response = await secretsClient.send(command);
 
-  //       if (response.SecretString) {
-  //         const parsed = JSON.parse(response.SecretString);
-  //         // Overwrite defaults with secrets
-  //         client = "postgres";
-  //         host = parsed.host;
-  //         port = parseInt(parsed.port, 10);
-  //         database = parsed.dbInstanceIdentifier;
-  //         user = parsed.username;
-  //         password = parsed.password;
+      console.log("Response from secrets manager", response);
 
-  //         // If you want SSL in production, enable it here:
-  //         ssl = {
-  //           rejectUnauthorized: env.bool(
-  //             "DATABASE_SSL_REJECT_UNAUTHORIZED",
-  //             false
-  //           ),
-  //         };
-  //       }
-  //     } catch (error) {
-  //       console.error("Failed to fetch RDS secrets from Secrets Manager:", error);
-  //       // Optionally throw error so Strapi will stop if DB config can’t load
-  //       throw error;
-  //     }
-  //   }
+      if (response.SecretString) {
+        console.log("Secrets string found");
+        const parsed = JSON.parse(response.SecretString);
+        // Overwrite defaults with secrets
+        client = "postgres";
+        host = parsed.host;
+        port = parseInt(parsed.port, 10);
+        database = parsed.dbInstanceIdentifier;
+        user = parsed.username;
+        password = parsed.password;
+
+        // If you want SSL in production, enable it here:
+        ssl = {
+          rejectUnauthorized: env.bool(
+            "DATABASE_SSL_REJECT_UNAUTHORIZED",
+            false
+          ),
+        };
+      }
+    } catch (error) {
+      console.error("Failed to fetch RDS secrets from Secrets Manager:", error);
+      // Optionally throw error so Strapi will stop if DB config can’t load
+      throw error;
+    }
+  }
 
   console.log("DB config:", {
     client,
