@@ -56,6 +56,16 @@ export default async ({ env }) => {
   //     }
   //   }
 
+  console.log("DB config:", {
+    client,
+    host,
+    port,
+    database,
+    user,
+    password,
+    ssl,
+  });
+
   // Return the final DB configuration to Strapi
   return {
     connection: {
