@@ -1,91 +1,19 @@
-/**
- * config/env/production/database.ts
- */
-
-import {
-  SecretsManagerClient,
-  GetSecretValueCommand,
-} from "@aws-sdk/client-secrets-manager";
-
-export default async ({ env }) => {
-  // Default, in case fetching secrets fails or we’re not in production
-  let client = env("DATABASE_CLIENT", "postgres");
-  let host = env("DATABASE_HOST", "localhost");
-  let port = env.int("DATABASE_PORT", 5432);
-  let database = env("DATABASE_NAME", "strapi");
-  let user = env("DATABASE_USERNAME", "strapi");
-  let password = env("DATABASE_PASSWORD", "strapi");
-  let ssl = env.bool("DATABASE_SSL", false) && {
-    rejectUnauthorized: env.bool("DATABASE_SSL_REJECT_UNAUTHORIZED", true),
-  };
-
-  //   Only fetch Secrets in production
-  if (env("NODE_ENV") === "production") {
-    console.log("Came inside production");
-    try {
-      const secretsClient = new SecretsManagerClient({
-        region: env("AWS_REGION", "us-west-2"),
-      });
-      const command = new GetSecretValueCommand({
-        SecretId: "hmweb-dev-rds",
-        VersionStage: "AWSCURRENT",
-      });
-      const response = await secretsClient.send(command);
-
-      console.log("Response from secrets manager", response);
-
-      if (response.SecretString) {
-        console.log("Secrets string found");
-        const parsed = JSON.parse(response.SecretString);
-        // Overwrite defaults with secrets
-        client = "postgres";
-        host = parsed.host;
-        port = parseInt(parsed.port, 10);
-        database = parsed.dbInstanceIdentifier;
-        user = parsed.username;
-        password = parsed.password;
-
-        // If you want SSL in production, enable it here:
-        ssl = {
-          rejectUnauthorized: env.bool(
-            "DATABASE_SSL_REJECT_UNAUTHORIZED",
-            false
-          ),
-        };
-      }
-    } catch (error) {
-      console.error("Failed to fetch RDS secrets from Secrets Manager:", error);
-      // Optionally throw error so Strapi will stop if DB config can’t load
-      throw error;
-    }
-  }
-
-  console.log("DB config:", {
-    client,
-    host,
-    port,
-    database,
-    user,
-    password,
-    ssl,
-  });
-
-  // Return the final DB configuration to Strapi
-  return {
+export default ({ env }) => ({
+  connection: {
+    client: env("DATABASE_CLIENT", "postgres"),
     connection: {
-      client: "postgres",
-      connection: {
-        host,
-        port,
-        database,
-        user,
-        password,
-        ssl,
-      },
-      pool: {
-        min: env.int("DATABASE_POOL_MIN", 2),
-        max: env.int("DATABASE_POOL_MAX", 10),
+      host: env("DATABASE_HOST", "localhost"),
+      port: env.int("DATABASE_PORT", 5432),
+      database: env("DATABASE_NAME", "strapi"),
+      user: env("DATABASE_USERNAME", "strapi"),
+      password: env("DATABASE_PASSWORD", "strapi"),
+      ssl: env.bool("DATABASE_SSL", false) && {
+        rejectUnauthorized: env.bool("DATABASE_SSL_REJECT_UNAUTHORIZED", true),
       },
     },
-  };
-};
+    pool: {
+      min: env.int("DATABASE_POOL_MIN", 2),
+      max: env.int("DATABASE_POOL_MAX", 10),
+    },
+  },
+});

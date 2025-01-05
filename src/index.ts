@@ -12,6 +12,7 @@ export default {
    * In a *vanilla* Strapi v4, the DB is usually already initialized by this time.
    */
   async register({ strapi }: { strapi: Core.Strapi }) {
+    console.log("This is register");
     if (process.env.NODE_ENV !== "production") {
       return;
     }
