@@ -11,12 +11,11 @@ ENV PATH=/opt/node_modules/.bin:$PATH
 
 WORKDIR /opt/app
 COPY . .
-# We'll run fetchSecrets.js at runtime, not during build
 RUN yarn build
 
 # Creating final production image
 FROM node:18-alpine
-RUN apk add --no-cache vips-dev
+RUN apk add --no-cache vips-dev aws-cli
 ENV NODE_ENV=production
 
 WORKDIR /opt/
@@ -27,11 +26,10 @@ COPY --from=build /opt/app ./
 
 ENV PATH=/opt/node_modules/.bin:$PATH
 
+# We don't want to run as node user because we need AWS creds access
+# RUN chown -R node:node /opt/app
+# USER node
+
 EXPOSE 1337
 
-# Add a startup script
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
-ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["yarn", "start"]
