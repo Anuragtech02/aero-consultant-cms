@@ -31,9 +31,13 @@ export default {
 
       // 2. Update strapi.config if we got our secrets
       if (response.SecretString) {
-        const { host, port, username, password, dbname } = JSON.parse(
-          response.SecretString
-        );
+        const {
+          host,
+          port,
+          username,
+          password,
+          dbInstanceIdentifier: dbname,
+        } = JSON.parse(response.SecretString);
 
         // Overwrite Strapi config in memory
         strapi.config.set("database.connection.client", "postgres");
