@@ -41,6 +41,19 @@
       },
       "required": true,
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "highlightImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     }
   }
 }

@@ -115,6 +115,14 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "teamSectionHeading": {
+      "type": "string",
+      "required": true
+    },
+    "teamSectionDescription": {
+      "type": "text",
+      "required": true
     }
   }
 }
