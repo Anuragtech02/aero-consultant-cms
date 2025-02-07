@@ -23,6 +23,53 @@
     "clientsSectionHeading": {
       "type": "string",
       "required": true
+    },
+    "slider": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.slider-tab",
+      "required": true
+    },
+    "camoServices": {
+      "type": "component",
+      "repeatable": false,
+      "component": "services.camo-services"
+    },
+    "recordReview": {
+      "type": "component",
+      "repeatable": false,
+      "component": "services.record-review",
+      "required": true
+    },
+    "recordDigitization": {
+      "type": "component",
+      "repeatable": false,
+      "component": "services.record-digitization",
+      "required": true
+    },
+    "aerobox": {
+      "type": "component",
+      "repeatable": false,
+      "component": "services.aerobox",
+      "required": true
+    },
+    "aeroops": {
+      "type": "component",
+      "repeatable": false,
+      "component": "services.aeroops",
+      "required": true
+    },
+    "aerooil": {
+      "type": "component",
+      "repeatable": false,
+      "component": "services.aerooil",
+      "required": true
+    },
+    "engineStand": {
+      "type": "component",
+      "repeatable": false,
+      "component": "services.aerooil",
+      "required": true
     }
   }
 }
