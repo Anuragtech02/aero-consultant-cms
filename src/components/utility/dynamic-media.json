@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_utility_dynamic_medias",
+  "info": {
+    "displayName": "DynamicMedia"
+  },
+  "options": {},
+  "attributes": {
+    "desktopImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "mobileImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

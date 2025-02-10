@@ -19,14 +19,6 @@
     "heroDescription": {
       "type": "string"
     },
-    "heroBGVideo": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "videos"
-      ]
-    },
     "seo": {
       "type": "component",
       "repeatable": false,
@@ -122,6 +114,12 @@
     },
     "teamSectionDescription": {
       "type": "text",
+      "required": true
+    },
+    "heroBGSlider": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.dynamic-media",
       "required": true
     }
   }
