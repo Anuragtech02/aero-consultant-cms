@@ -1,7 +1,8 @@
 {
   "collectionName": "components_services_record_reviews",
   "info": {
-    "displayName": "Record Review"
+    "displayName": "Record Review",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -14,14 +15,15 @@
       "required": true
     },
     "highlightImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "shortDescription": {
       "type": "customField",
@@ -31,12 +33,12 @@
       "customField": "plugin::ckeditor5.CKEditor"
     },
     "leftImage": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "helpPoints": {
       "type": "customField",
