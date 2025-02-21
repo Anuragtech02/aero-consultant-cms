@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_partnernship_how_section_cards",
+  "info": {
+    "displayName": "How Section Card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

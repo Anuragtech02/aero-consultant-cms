@@ -1,0 +1,78 @@
+{
+  "kind": "singleType",
+  "collectionName": "partnership_pages",
+  "info": {
+    "singularName": "partnership-page",
+    "pluralName": "partnership-pages",
+    "displayName": "Partnership Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heroHeading": {
+      "type": "string",
+      "required": true
+    },
+    "heroDescription": {
+      "type": "text",
+      "required": true
+    },
+    "heroLogos": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "ctaList": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.cta",
+      "required": true
+    },
+    "benefitsHeading": {
+      "type": "string",
+      "required": true
+    },
+    "benefitsBgIage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "benefitsList": {
+      "displayName": "Benefit Card",
+      "type": "component",
+      "repeatable": true,
+      "component": "partnernship.benefit-card",
+      "required": true
+    },
+    "howSectionHeading": {
+      "type": "string",
+      "required": true
+    },
+    "howSectionDescription": {
+      "type": "text",
+      "required": true
+    },
+    "howSectionCards": {
+      "displayName": "How Section Card",
+      "type": "component",
+      "repeatable": true,
+      "component": "partnernship.how-section-card"
+    },
+    "digitizeSectionHeading": {
+      "type": "string",
+      "required": true
+    },
+    "digitizeSectionDescription": {
+      "type": "text"
+    }
+  }
+}

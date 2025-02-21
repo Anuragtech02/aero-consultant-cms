@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_partnernship_benefit_cards",
+  "info": {
+    "displayName": "Benefit Card"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}
