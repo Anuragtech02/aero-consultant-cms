@@ -1,7 +1,8 @@
 {
   "collectionName": "components_services_aerooils",
   "info": {
-    "displayName": "Aerooil"
+    "displayName": "Aerooil",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -21,12 +22,19 @@
       "customField": "plugin::ckeditor5.CKEditor"
     },
     "rightImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "leftImage": {
       "allowedTypes": [
         "images"
       ],
       "type": "media",
-      "multiple": false,
-      "required": true
+      "multiple": false
     }
   }
 }
