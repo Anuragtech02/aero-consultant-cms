@@ -7,13 +7,14 @@ export default [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          "connect-src": ["'self'", "https:", "http"],
+          "connect-src": ["'self'", "https:"],
           "img-src": [
             "'self'",
             "data:",
             "blob:",
             "market-assets.strapi.io",
             "https://hmweb-dev-bucket.s3.us-west-2.amazonaws.com",
+            "https://aero-cms.s3.ap-south-1.amazonaws.com",
           ],
           "media-src": [
             "'self'",
@@ -21,21 +22,29 @@ export default [
             "blob:",
             "market-assets.strapi.io",
             "https://hmweb-dev-bucket.s3.us-west-2.amazonaws.com",
+            "https://aero-cms.s3.ap-south-1.amazonaws.com",
           ],
           upgradeInsecureRequests: null,
         },
       },
-      cors: {
-        origin: [
-          "http://localhost:3000",
-          "http://localhost:1337",
-          "htttp://localhost:5173",
-          "https://aeroconsultant.fr",
-        ],
-      },
     },
   },
-  "strapi::cors",
+  {
+    name: "strapi::cors",
+    config: {
+      enabled: true,
+      origin: [
+        "https://aeroconsultant.fr",
+        "https://www.aeroconsultant.fr",
+        // Remove localhost in production, or keep for dev
+        // "http://localhost:3000",
+        // "http://localhost:1337",
+      ],
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"],
+      headers: ["Content-Type", "Authorization", "Origin", "Accept"],
+      keepHeaderOnError: true,
+    },
+  },
   "strapi::poweredBy",
   "strapi::query",
   "strapi::body",
