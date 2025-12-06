@@ -1,7 +1,8 @@
 {
   "collectionName": "components_services_aeroboxes",
   "info": {
-    "displayName": "Aerobox"
+    "displayName": "Aerobox",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -14,12 +15,12 @@
       "required": true
     },
     "leftImage": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "featurePoints": {
       "type": "customField",
@@ -28,6 +29,9 @@
         "preset": "defaultHtml"
       },
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "subHeading": {
+      "type": "string"
     }
   }
 }
